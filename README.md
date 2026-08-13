@@ -1,0 +1,43 @@
+# Attnio Backend
+
+Backend pieces for the Attnio waitlist flow.
+
+## Contents
+
+| Path | Purpose |
+|------|---------|
+| `api/waitlist/route.ts` | Next.js API route — validates waitlist submissions and forwards to Google Apps Script |
+| `lib/countries.ts` | Country dial codes + email/phone helpers used by the waitlist API |
+| `scripts/attnio-waitlist-apps-script.gs` | Google Apps Script that writes signups to a Google Sheet and emails a notification |
+
+## Flow
+
+```
+Client form → POST /api/waitlist → Google Apps Script Web App → Google Sheet
+```
+
+## Environment
+
+Copy `.env.example` and set:
+
+```env
+NEXT_PUBLIC_APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXX/exec
+```
+
+Optional server-only alias:
+
+```env
+APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXX/exec
+```
+
+## Google Apps Script setup
+
+1. Create a Google Sheet with headers: `Timestamp | Name | Email | Company | Role | Country Code | Mobile`
+2. Extensions → Apps Script → paste `scripts/attnio-waitlist-apps-script.gs`
+3. Update `NOTIFY_EMAIL` and `ADMIN_KEY` in the script
+4. Deploy → Web app → Anyone
+5. Put the `/exec` URL in env as above
+
+## Notes
+
+These files currently power the Attnio landing waitlist. A fuller product backend (auth, campaigns, CRM) can be added here later.
