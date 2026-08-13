@@ -18,7 +18,7 @@ Client form → POST /api/waitlist → Google Apps Script Web App → Google She
 
 ## Environment
 
-Copy `.env.example` and set:
+Set locally (do not commit env files):
 
 ```env
 NEXT_PUBLIC_APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXX/exec
