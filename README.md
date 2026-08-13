@@ -16,27 +16,13 @@ Backend pieces for the Attnio waitlist flow.
 Client form → POST /api/waitlist → Google Apps Script Web App → Google Sheet
 ```
 
-## Environment
-
-Set locally (do not commit env files):
-
-```env
-NEXT_PUBLIC_APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXX/exec
-```
-
-Optional server-only alias:
-
-```env
-APPS_SCRIPT_URL=https://script.google.com/macros/s/XXXXXXX/exec
-```
-
 ## Google Apps Script setup
 
 1. Create a Google Sheet with headers: `Timestamp | Name | Email | Company | Role | Country Code | Mobile`
 2. Extensions → Apps Script → paste `scripts/attnio-waitlist-apps-script.gs`
 3. Update `NOTIFY_EMAIL` and `ADMIN_KEY` in the script
 4. Deploy → Web app → Anyone
-5. Put the `/exec` URL in env as above
+5. Use the `/exec` URL in your app configuration
 
 ## Notes
 
